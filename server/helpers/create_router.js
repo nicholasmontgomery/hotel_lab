@@ -56,13 +56,12 @@ router.get('/:id', (req, res) => {
     });
   })
 
-  router.put('/:id', (req, res) => {
+  router.patch('/:id', (req, res) => {
   const id = req.params.id;
-  const updatedData = req.body;
   collection
   .findOneAndUpdate(
     { _id: ObjectID(id)},
-    { $set: updatedData },
+    { $set: {status: "checked-in"} },
     { returnOriginal: false }
   )
   .then((result) => {
